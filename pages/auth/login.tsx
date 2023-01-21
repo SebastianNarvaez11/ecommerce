@@ -1,13 +1,11 @@
 import { NextPage, GetServerSideProps } from 'next'
 import { AuthLayout } from '../../components/layouts'
-import { Grid, Typography, TextField, Button, Box, Chip, Divider } from '@mui/material'
+import { Grid, Typography, TextField, Button, Box, Divider } from '@mui/material'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { isEmail } from '../../utils'
-import { tesloApi } from '../../axios'
 import { ErrorOutline } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
-import { loginUser } from '../../store/thunks'
 import { useAppDispatch } from '../../store/hooks'
 import { useRouter } from 'next/router'
 import { getProviders, getSession, signIn } from 'next-auth/react'
@@ -62,11 +60,7 @@ const LoginPage: NextPage = () => {
                             <Typography variant='h1' component="h1">Iniciar Sesión</Typography>
 
                             {showError &&
-                                <Chip
-                                    label='NO RECONOCEMOS ESE USUARIO / CONTRASEÑA'
-                                    color='error'
-                                    icon={<ErrorOutline />}
-                                    className='fadeIn' />
+                                <Typography>No reconocemos ese usuario o contraseña</Typography>
                             }
                         </Grid>
 
