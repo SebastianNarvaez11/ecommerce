@@ -1,7 +1,9 @@
-import { ReactNode, FC } from 'react'
+import { ReactNode, FC, useEffect } from 'react'
 import Head from 'next/head'
 import { Navbar, SideMenu } from '../ui'
 import { Box } from '@mui/material'
+
+
 
 interface Props {
     title: string,
@@ -11,6 +13,7 @@ interface Props {
 }
 
 export const ShopLayout: FC<Props> = ({ children, title, page_description, image_url }) => {
+
     return (
         <>
             <Head>

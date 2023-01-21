@@ -9,7 +9,7 @@ interface Props {
     images: string[]
 }
 
-const ProductSlidesshow: FC<Props> = ({ images }) => {
+export const ProductSlidesshow: FC<Props> = ({ images }) => {
     return (
         <Slide
             easing='ease'
@@ -17,15 +17,12 @@ const ProductSlidesshow: FC<Props> = ({ images }) => {
             indicators>
 
             {images.map(image => {
-                const url = `/img/products/${image}`
                 return (
                     <div className={styles['each-slide']} key={image}>
-                        <div style={{ backgroundImage: `url(${ url })`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat'}}></div>
+                        <div style={{ backgroundImage: `url(${ image })`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}></div>
                     </div>
                 )
             })}
         </Slide>
     )
 }
-
-export default ProductSlidesshow

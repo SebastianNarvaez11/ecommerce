@@ -1,9 +1,9 @@
-import { FC, useState } from "react"
-import { Box, Card, CardActionArea, CardMedia, Grid, IconButton, Link, Rating, Typography } from "@mui/material"
+import { FC, useMemo, useState } from "react"
+import { Box, Card, CardActionArea, CardMedia, Chip, Grid, IconButton, Rating, Typography } from "@mui/material"
 import StarIcon from '@mui/icons-material/StarOutlined';
 import { IProduct } from "../../interfaces"
 import { toMoney } from "../../utils"
-import NextLink from "next/link";
+import Link from "next/link";
 
 interface Props {
     product: IProduct
@@ -12,7 +12,14 @@ interface Props {
 export const ProductCard: FC<Props> = ({ product }) => {
 
     const [isHovered, setIsHovered] = useState(false)
+    const [isImageLoaded, setIsImageLoaded] = useState(false)
 
+    const productImage = useMemo(() => {
+        return isHovered
+            ? product.images[1]
+            : product.images[0]
+
+    }, [isHovered, product.images])
 
     return (
         <Grid item xs={6} sm={6} md={4} lg={3}>
@@ -21,35 +28,27 @@ export const ProductCard: FC<Props> = ({ product }) => {
                 onMouseLeave={() => setIsHovered(false)}>
 
                 <CardActionArea sx={{ padding: 1, height: '100%' }}>
-                    {!isHovered ?
-                        <NextLink href='/product/slug' passHref prefetch={false}>
-                            <Link>
-                                <CardMedia
-                                    className="fadeIn"
-                                    component='img'
-                                    image={`img/products/${product.images[0]}`}
-                                    alt={product.title}
-                                    style={{ backgroundColor: '#F9F9F9', borderRadius: 20 }} />
-                            </Link>
-                        </NextLink>
+                    <Link href={`/product/${product.slug}`} prefetch={false}>
+                        {product.inStock === 0 &&
+                            <Chip
+                                color="secondary"
+                                label="No hay disponibles"
+                                sx={{ position: 'absolute', zIndex: 99, top: '10px', left: '10px' }} />
+                        }
 
-                        :
-                        <NextLink href='/product/slug' passHref prefetch={false}>
-                            <Link>
-                                <CardMedia
-                                    className="fadeIn"
-                                    component='img'
-                                    image={`img/products/${product.images[1]}`}
-                                    alt={product.title}
-                                    style={{ backgroundColor: '#F9F9F9', borderRadius: 20 }} />
-                            </Link>
-                        </NextLink>
-                    }
+                        <CardMedia
+                            className="fadeIn"
+                            component='img'
+                            image={productImage}
+                            alt={product.title}
+                            onLoad={() => setIsImageLoaded(true)}
+                            style={{ backgroundColor: '#F9F9F9', borderRadius: 20 }} />
+                    </Link>
 
-                    <Grid container marginTop={2}>
+                    <Grid container marginTop={2} display={isImageLoaded ? 'block' : 'none'}>
                         <Grid item xs={12} sm={8}>
                             <Typography fontWeight={500} fontSize={18}>{product.title}</Typography>
-                            <Typography textTransform='uppercase' color="text.secondary" fontSize={12}>{product.category}</Typography>
+                            <Typography textTransform='uppercase' color="text.secondary" fontSize={12}>{product.type}</Typography>
                         </Grid>
                         <Grid item xs={12} sm={4} display='flex' justifyContent='end'>
                             <StarIcon sx={{ color: '#FAAF00' }} />

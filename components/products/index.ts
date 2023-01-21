@@ -1,4 +1,3 @@
-export * from './CategoryCard'
 export * from './ListProducts'
 export * from './ProductCard'
 export * from './ProductSlidesshow'

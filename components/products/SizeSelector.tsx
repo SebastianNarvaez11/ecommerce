@@ -4,18 +4,18 @@ import { ISize } from '../../interfaces'
 
 interface Props {
     selectedSize?: ISize,
-    sizes: ISize[]
+    sizes: ISize[],
+    onSelectedSize : (size: ISize) => void
 }
 
-export const SizeSelector: FC<Props> = ({ selectedSize, sizes }) => {
+export const SizeSelector: FC<Props> = ({ selectedSize, sizes, onSelectedSize}) => {
     return (
-
-        <Box>
+        <Box marginBottom={1}>
             {sizes.map(size => (
-                <Button key={size} size='small' color={selectedSize === size ? 'primary' : 'inherit'}>
+                <Button key={size} size='small' color={selectedSize === size ? 'secondary' : 'inherit'} style={{margin: 1}} onClick={() => onSelectedSize(size)}>
                     {size}
                 </Button>
             ))}
         </Box>
-  )
+    )
 }
