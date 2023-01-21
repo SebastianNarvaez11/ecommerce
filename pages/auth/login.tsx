@@ -4,7 +4,7 @@ import { Grid, Typography, TextField, Button, Box, Chip, Divider } from '@mui/ma
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { isEmail } from '../../utils'
-import { tesloApi } from '../../api'
+import { tesloApi } from '../../axios'
 import { ErrorOutline } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
 import { loginUser } from '../../store/thunks'

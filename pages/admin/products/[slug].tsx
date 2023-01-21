@@ -6,7 +6,7 @@ import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons
 import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField } from '@mui/material';
 import { getProductBySlug } from '../../../database/dbProducts';
 import { Controller, useForm } from 'react-hook-form';
-import { tesloApi } from '../../../api';
+import { tesloApi } from '../../../axios';
 import { useRouter } from 'next/router';
 import { ProductModel } from '../../../models';
 

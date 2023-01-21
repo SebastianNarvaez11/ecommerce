@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { tesloApi } from '../../api';
+import { tesloApi } from '../../axios';
 import { IResponseLogin } from '../../interfaces';
 import { login } from '../slices/authSlice';
 import { AppDispatch } from './../store';

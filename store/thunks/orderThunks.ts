@@ -1,5 +1,5 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
-import { tesloApi } from "../../api";
+import { tesloApi } from "../../axios";
 import { RootState } from "../store";
 import { IOrder } from "../../interfaces";
 import axios from "axios";

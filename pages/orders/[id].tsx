@@ -10,7 +10,7 @@ import { getOrderById } from '../../database';
 import { IOrder } from '../../interfaces';
 
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import { tesloApi } from '../../api';
+import { tesloApi } from '../../axios';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
